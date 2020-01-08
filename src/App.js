@@ -6,6 +6,7 @@ import Select from "react-select";
 import languages from "./Tesseract/language.js";
 import update from "react-addons-update";
 import ReactLoading from "react-loading";
+import loadImage from "blueimp-load-image";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +27,7 @@ export default class App extends Component {
     const {
       data: { text }
     } = await Tesseract.recognize(img, lang);
-    console.log("read success");
+    console.log("read success", text);
     const updateState = update(this.state, {
       text: { $set: text },
       isLoading: { $set: false }
@@ -41,20 +42,31 @@ export default class App extends Component {
   }
   handleChange(e) {
     const image = e.target.files[0];
-    if (image) {
-      const imgUrl = URL.createObjectURL(image);
-      const updateState = update(this.state, {
-        image: { $set: imgUrl },
-        isLoading: { $set: true }
-      });
-      this.setState(updateState);
-      this.readImage(imgUrl);
-    } else {
-      const updateState = update(this.state, {
-        image: { $set: "" }
-      });
-      this.setState(updateState);
-    }
+    const test = loadImage(
+      image,
+      img => {
+        document.body.appendChild(img);
+      },
+      {
+        orientation: true
+      }
+    );
+    // const imgUrl = URL.createObjectURL(test);
+    // this.readImage(imgUrl, "kor");
+    // if (image) {
+    //   const imgUrl = URL.createObjectURL(image);
+    //   const updateState = update(this.state, {
+    //     image: { $set: imgUrl },
+    //     isLoading: { $set: true }
+    //   });
+    //   this.setState(updateState);
+    //   this.readImage(imgUrl);
+    // } else {
+    //   const updateState = update(this.state, {
+    //     image: { $set: "" }
+    //   });
+    //   this.setState(updateState);
+    // }
   }
   handleChangeSelect(selected, event) {
     if (!this.state.image || this.state.selectedLanguage === selected) {
