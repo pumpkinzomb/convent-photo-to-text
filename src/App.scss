@@ -1,9 +1,10 @@
 $borderColor1: gray;
 .App {
   width: 100%;
-  padding: 2rem 0;
+  padding: 2rem 0.5rem;
   max-width: 740px;
   margin: auto;
+  box-sizing: border-box;
   h1 {
     padding: 1rem 0;
     text-align: center;
