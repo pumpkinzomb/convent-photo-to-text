@@ -9,8 +9,10 @@
     "clipboard": "^2.0.4",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
+    "react-addons-update": "^15.6.2",
     "react-dom": "^16.12.0",
-    "react-scripts": "^3.2.0",
+    "react-loading": "^2.0.3",
+    "react-scripts": "^3.3.0",
     "react-select": "^3.0.8",
     "tesseract.js": "^2.0.2"
   },
