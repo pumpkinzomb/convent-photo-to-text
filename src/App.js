@@ -43,36 +43,35 @@ export default class App extends Component {
   }
   handleChange(e) {
     const image = e.target.files[0];
-    const test = loadImage(
-      image,
-      img => {
-        document.body.appendChild(img);
-      },
-      {
-        maxWidth: 600,
-        orientation: true
-      }
-    );
-    console.log(test.src);
+    // const test = loadImage(
+    //   image,
+    //   img => {
+    //     document.body.appendChild(img);
+    //   },
+    //   {
+    //     maxWidth: 600,
+    //     orientation: true
+    //   }
+    // );
+    // console.log(test.src);
     // this.readImage(test, "eng");
-
     // console.log(testSrc);
     // const imgUrl = URL.createObjectURL(test);
 
-    // if (image) {
-    //   const imgUrl = URL.createObjectURL(image);
-    //   const updateState = update(this.state, {
-    //     image: { $set: imgUrl },
-    //     isLoading: { $set: true }
-    //   });
-    //   this.setState(updateState);
-    //   this.readImage(imgUrl);
-    // } else {
-    //   const updateState = update(this.state, {
-    //     image: { $set: "" }
-    //   });
-    //   this.setState(updateState);
-    // }
+    if (image) {
+      const imgUrl = URL.createObjectURL(image);
+      const updateState = update(this.state, {
+        image: { $set: imgUrl },
+        isLoading: { $set: true }
+      });
+      this.setState(updateState);
+      this.readImage(imgUrl);
+    } else {
+      const updateState = update(this.state, {
+        image: { $set: "" }
+      });
+      this.setState(updateState);
+    }
   }
   handleChangeSelect(selected, event) {
     if (!this.state.image || this.state.selectedLanguage === selected) {
