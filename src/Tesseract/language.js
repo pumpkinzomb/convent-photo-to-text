@@ -1,10 +1,10 @@
 const supportList = [
-  { value: "chi_sim", label: "Chinese - Simplified" },
   { value: "eng", label: "English" },
+  { value: "kor", label: "Korean" },
+  { value: "jpn", label: "Japanese" },
+  { value: "chi_sim", label: "Chinese - Simplified" },
   { value: "fra", label: "French" },
   { value: "deu", label: "German" },
-  { value: "jpn", label: "Japanese" },
-  { value: "kor", label: "Korean" },
   { value: "nor", label: "Norwegian" }
 ];
 

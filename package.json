@@ -15,6 +15,7 @@
     "react-loading": "^2.0.3",
     "react-scripts": "^3.3.0",
     "react-select": "^3.0.8",
+    "reset-css": "^5.0.1",
     "tesseract.js": "^2.0.2"
   },
   "scripts": {

@@ -6,7 +6,7 @@ import Select from "react-select";
 import languages from "./Tesseract/language.js";
 import update from "react-addons-update";
 import ReactLoading from "react-loading";
-import loadImage from "blueimp-load-image";
+// import loadImage from "blueimp-load-image";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -14,17 +14,15 @@ export default class App extends Component {
     this.textCopyBtn = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeSelect = this.handleChangeSelect.bind(this);
-    this.readImage = this.readImage.bind(this);
     this.handleInputText = this.handleInputText.bind(this);
-    this.handleReset = this.handleReset.bind(this);
     this.state = {
       text: "",
       image: "",
       isLoading: false,
-      selectedLanguage: languages[1]
+      selectedLanguage: languages[0]
     };
   }
-  async readImage(img, lang) {
+  readImage = async (img, lang) => {
     const {
       data: { text }
     } = await Tesseract.recognize(img, lang);
@@ -34,7 +32,7 @@ export default class App extends Component {
       isLoading: { $set: false }
     });
     this.setState(updateState);
-  }
+  };
   handleInputText(e) {
     const updateState = update(this.state, {
       text: { $set: e.target.value }
@@ -66,11 +64,6 @@ export default class App extends Component {
       });
       this.setState(updateState);
       this.readImage(imgUrl, this.state.selectedLanguage.value);
-    } else {
-      const updateState = update(this.state, {
-        image: { $set: "" }
-      });
-      this.setState(updateState);
     }
   }
   handleChangeSelect(selected, event) {
@@ -94,13 +87,27 @@ export default class App extends Component {
       this.readImage(this.state.image, selected.value);
     }
   }
-  handleReset() {
+  handleReadAgain = () => {
+    console.log("read");
+    if (!this.state.image) {
+      return;
+    }
+    const updateState = update(this.state, {
+      isLoading: {
+        $set: true
+      }
+    });
+    this.setState(updateState);
+    const { image, selectedLanguage } = this.state;
+    this.readImage(image, selectedLanguage.value);
+  };
+  handleReset = () => {
     const updateState = update(this.state, {
       text: { $set: "" },
       image: { $set: "" }
     });
     this.setState(updateState);
-  }
+  };
   componentDidMount() {
     const button = this.textCopyBtn.current;
     const input = this.textArea.current;
@@ -125,7 +132,8 @@ export default class App extends Component {
     const { text, image, selectedLanguage, isLoading } = this.state;
     return (
       <div className="App">
-        <h1>Text Converter</h1>
+        <h1>Text:ure</h1>
+        <p className="description">Simple Application which extract text in photograph.</p>
         <Select
           classNamePrefix="select"
           options={languages}
@@ -147,17 +155,22 @@ export default class App extends Component {
             ) : (
               ""
             )}
-            {image ? <img src={image} crossOrigin="anonymous" alt={image}></img> : ""}
+            {image ? <img src={image} crossOrigin="anonymous" alt={image} /> : ""}
           </div>
           <div className="text">
             <textarea placeholder="" value={text} ref={this.textArea} onChange={this.handleInputText}></textarea>
           </div>
-          <button type="button" ref={this.textCopyBtn}>
-            복사하기
-          </button>
-          <button type="button" onClick={this.handleReset}>
-            Reset
-          </button>
+          <div className="btns">
+            <button type="button" ref={this.textCopyBtn}>
+              복사하기
+            </button>
+            <button type="button" onClick={this.handleReadAgain}>
+              재인식
+            </button>
+            <button type="button" onClick={this.handleReset}>
+              Reset
+            </button>
+          </div>
         </div>
       </div>
     );

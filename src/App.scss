@@ -8,10 +8,18 @@ $borderColor1: gray;
   box-sizing: border-box;
 
   h1 {
-    padding: 1rem 0;
+    padding: 1rem 0 0.5rem 0;
     text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
   }
 
+  .description {
+    text-align: center;
+  }
+  .select__control {
+    margin-top: 2rem;
+  }
   .camera-section {
     margin-top: 1rem;
 
@@ -38,6 +46,7 @@ $borderColor1: gray;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        background: rgba(255, 255, 255, 0.7);
 
         span {
           margin-bottom: 1rem;
@@ -61,10 +70,20 @@ $borderColor1: gray;
       }
     }
 
-    button {
-      margin-top: 2rem;
-      width: 100%;
-      height: 48px;
+    .btns {
+      display: flex;
+
+      button {
+        margin-top: 2rem;
+        width: 100%;
+        height: 48px;
+        border: 1px solid $borderColor1;
+        border-radius: 0.5rem;
+
+        & + button {
+          margin-left: 0.5rem;
+        }
+      }
     }
   }
 }
