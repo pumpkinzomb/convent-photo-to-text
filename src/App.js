@@ -12,9 +12,7 @@ export default class App extends Component {
     super(props);
     this.textArea = React.createRef();
     this.textCopyBtn = React.createRef();
-    this.handleChange = this.handleChange.bind(this);
-    this.handleChangeSelect = this.handleChangeSelect.bind(this);
-    this.handleInputText = this.handleInputText.bind(this);
+
     this.state = {
       text: "",
       image: "",
@@ -33,13 +31,13 @@ export default class App extends Component {
     });
     this.setState(updateState);
   };
-  handleInputText(e) {
+  handleInputText = e => {
     const updateState = update(this.state, {
       text: { $set: e.target.value }
     });
     this.setState(updateState);
-  }
-  handleChange(e) {
+  };
+  handleChange = e => {
     const image = e.target.files[0];
     // const test = loadImage(
     //   image,
@@ -65,8 +63,8 @@ export default class App extends Component {
       this.setState(updateState);
       this.readImage(imgUrl, this.state.selectedLanguage.value);
     }
-  }
-  handleChangeSelect(selected, event) {
+  };
+  handleChangeSelect = (selected, event) => {
     if (!this.state.image) {
       const updateState = update(this.state, {
         selectedLanguage: {
@@ -86,7 +84,7 @@ export default class App extends Component {
       this.setState(updateState);
       this.readImage(this.state.image, selected.value);
     }
-  }
+  };
   handleReadAgain = () => {
     console.log("read");
     if (!this.state.image) {
@@ -133,7 +131,10 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>TEXT:URE</h1>
-        <p className="description">Simple Application which extract text in photograph.</p>
+        <p className="description">
+          Simple Application <br />
+          which extract text in photograph.
+        </p>
         <Select
           classNamePrefix="select"
           options={languages}
@@ -143,7 +144,7 @@ export default class App extends Component {
           autoFocus={true}
         />
         <div className="camera-section">
-          <input type="file" accept="image/jpg" onChange={this.handleChange} />
+          <input type="file" accept="image/*" onChange={this.handleChange} />
         </div>
         <div className="text-section">
           <div className="image">
@@ -160,17 +161,29 @@ export default class App extends Component {
           <div className="text">
             <textarea placeholder="" value={text} ref={this.textArea} onChange={this.handleInputText}></textarea>
           </div>
-          <div className="btns">
-            <button type="button" ref={this.textCopyBtn}>
-              복사하기
-            </button>
-            <button type="button" onClick={this.handleReadAgain}>
-              재인식
-            </button>
-            <button type="button" onClick={this.handleReset}>
-              Reset
-            </button>
-          </div>
+        </div>
+
+        <div className="btns">
+          <button type="button" ref={this.textCopyBtn}>
+            복사하기
+          </button>
+          <button type="button" onClick={this.handleReadAgain}>
+            재인식
+          </button>
+          <button type="button" onClick={this.handleReset}>
+            Reset
+          </button>
+        </div>
+        <div className="use-way">
+          <h2>directions for use</h2>
+          <span class="ko">
+            ( 권장되는 방법 )<br /> <b>앨범 속 보정된 사진을 사용하는 것</b>이 사진을 바로 찍어서 사용하는 것보다 글자
+            인식률이 높습니다.
+          </span>
+          <span class="en">
+            ( Recommended )<br /> <b>Using calibrated pictures in an album</b> is more recognizable than taking and
+            using them.
+          </span>
         </div>
       </div>
     );

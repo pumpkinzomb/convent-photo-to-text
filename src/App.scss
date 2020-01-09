@@ -2,7 +2,7 @@ $borderColor1: gray;
 
 .App {
   width: 100%;
-  padding: 2rem 0.5rem;
+  padding: 3rem 0.8rem;
   max-width: 740px;
   margin: auto;
   box-sizing: border-box;
@@ -37,7 +37,6 @@ $borderColor1: gray;
 
     .image {
       position: relative;
-
       .loading {
         position: absolute;
         columns: #000000;
@@ -70,20 +69,45 @@ $borderColor1: gray;
         font-size: 1rem;
       }
     }
+  }
+  .btns {
+    display: flex;
 
-    .btns {
-      display: flex;
+    button {
+      margin-top: 2rem;
+      width: 100%;
+      height: 48px;
+      border: 1px solid $borderColor1;
+      border-radius: 0.5rem;
 
-      button {
-        margin-top: 2rem;
-        width: 100%;
-        height: 48px;
-        border: 1px solid $borderColor1;
-        border-radius: 0.5rem;
-
-        & + button {
-          margin-left: 0.5rem;
-        }
+      & + button {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  .use-way {
+    margin-top: 3rem;
+    padding: 0 1.2rem;
+    h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      opacity: 0.8;
+    }
+    span {
+      margin-top: 0.8rem;
+      display: block;
+      line-height: 1.2rem;
+      opacity: 0.4;
+      font-size: 0.5rem;
+      &.ko,
+      &.en {
+        font-size: 0.8rem;
+      }
+      b {
+        display: inline-block;
+        margin-top: 0.4rem;
+        opacity: 1;
+        font-weight: bold;
       }
     }
   }
