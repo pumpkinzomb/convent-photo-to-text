@@ -74,7 +74,7 @@ export default class App extends Component {
     }
   }
   handleChangeSelect(selected, event) {
-    if (!this.state.image || this.state.selectedLanguage === selected) {
+    if (!this.state.image) {
       const updateState = update(this.state, {
         selectedLanguage: {
           $set: selected
@@ -148,6 +148,8 @@ export default class App extends Component {
           <div className="image">
             {isLoading ? (
               <div className="loading">
+                Now Converting...
+                <br />
                 <ReactLoading type="bars" color="#000000" />
               </div>
             ) : (
