@@ -16,6 +16,7 @@ export default class App extends Component {
     this.handleChangeSelect = this.handleChangeSelect.bind(this);
     this.readImage = this.readImage.bind(this);
     this.handleInputText = this.handleInputText.bind(this);
+    this.handleReset = this.handleReset.bind(this);
     this.state = {
       text: "",
       image: "",
@@ -48,11 +49,16 @@ export default class App extends Component {
         document.body.appendChild(img);
       },
       {
+        maxWidth: 600,
         orientation: true
       }
     );
+    console.log(test.src);
+    // this.readImage(test, "eng");
+
+    // console.log(testSrc);
     // const imgUrl = URL.createObjectURL(test);
-    // this.readImage(imgUrl, "kor");
+
     // if (image) {
     //   const imgUrl = URL.createObjectURL(image);
     //   const updateState = update(this.state, {
@@ -88,6 +94,13 @@ export default class App extends Component {
       this.setState(updateState);
       this.readImage(this.state.image, selected.value);
     }
+  }
+  handleReset() {
+    const updateState = update(this.state, {
+      text: { $set: "" },
+      image: { $set: "" }
+    });
+    this.setState(updateState);
   }
   componentDidMount() {
     const button = this.textCopyBtn.current;
@@ -127,7 +140,7 @@ export default class App extends Component {
             type="file"
             id="camera"
             name="camera"
-            capture="camera"
+            // capture="camera"
             accept="image/*"
             onChange={this.handleChange}
           />
@@ -144,15 +157,13 @@ export default class App extends Component {
             <img src={image} crossOrigin="anonymous" alt={image}></img>
           </div>
           <div className="text">
-            <textarea
-              placeholder=""
-              value={text}
-              ref={this.textArea}
-              onChange={this.handleInputText}
-            ></textarea>
+            <textarea placeholder="" value={text} ref={this.textArea} onChange={this.handleInputText}></textarea>
           </div>
           <button type="button" ref={this.textCopyBtn}>
             복사하기
+          </button>
+          <button type="button" onClick={this.handleReset}>
+            Reset
           </button>
         </div>
       </div>
