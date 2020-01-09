@@ -65,7 +65,7 @@ export default class App extends Component {
         isLoading: { $set: true }
       });
       this.setState(updateState);
-      this.readImage(imgUrl);
+      this.readImage(imgUrl, this.state.selectedLanguage.value);
     } else {
       const updateState = update(this.state, {
         image: { $set: "" }
@@ -135,27 +135,19 @@ export default class App extends Component {
           autoFocus={true}
         />
         <div className="camera-section">
-          <input
-            type="file"
-            id="camera"
-            name="camera"
-            // capture="camera"
-            accept="image/*"
-            onChange={this.handleChange}
-          />
+          <input type="file" accept="image/*" onChange={this.handleChange} />
         </div>
         <div className="text-section">
           <div className="image">
             {isLoading ? (
               <div className="loading">
-                Now Converting...
-                <br />
+                <span>Now Converting...</span>
                 <ReactLoading type="bars" color="#000000" />
               </div>
             ) : (
               ""
             )}
-            <img src={image} crossOrigin="anonymous" alt={image}></img>
+            {image ? <img src={image} crossOrigin="anonymous" alt={image}></img> : ""}
           </div>
           <div className="text">
             <textarea placeholder="" value={text} ref={this.textArea} onChange={this.handleInputText}></textarea>
