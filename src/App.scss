@@ -6,19 +6,20 @@ $borderColor1: gray;
   max-width: 740px;
   margin: auto;
   box-sizing: border-box;
-
+  font-family: "Comfortaa", cursive;
   h1 {
+    font-family: "Bangers", cursive;
     padding: 1rem 0 0.5rem 0;
     text-align: center;
-    font-size: 3rem;
-    font-weight: bold;
+    font-size: 4rem;
   }
 
   .description {
+    margin-top: 1rem;
     text-align: center;
   }
   .select__control {
-    margin-top: 2rem;
+    margin-top: 3rem;
   }
   .camera-section {
     margin-top: 1rem;

@@ -132,7 +132,7 @@ export default class App extends Component {
     const { text, image, selectedLanguage, isLoading } = this.state;
     return (
       <div className="App">
-        <h1>Text:ure</h1>
+        <h1>TEXT:URE</h1>
         <p className="description">Simple Application which extract text in photograph.</p>
         <Select
           classNamePrefix="select"
@@ -143,7 +143,7 @@ export default class App extends Component {
           autoFocus={true}
         />
         <div className="camera-section">
-          <input type="file" accept="image/*" onChange={this.handleChange} />
+          <input type="file" accept="image/jpg" onChange={this.handleChange} />
         </div>
         <div className="text-section">
           <div className="image">
