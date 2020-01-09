@@ -135,39 +135,63 @@ export default class App extends Component {
           Simple Application <br />
           which extract text in photograph.
         </p>
-        <Select
-          classNamePrefix="select"
-          options={languages}
-          value={selectedLanguage}
-          isSearchable={false}
-          onChange={this.handleChangeSelect}
-          autoFocus={true}
-        />
+
         <div className="camera-section">
-          <input type="file" accept="image/*" onChange={this.handleChange} />
+          <label htmlFor="pickPhoto">
+            <i className="material-icons">photo_camera</i>
+          </label>
+          <input
+            id="pickPhoto"
+            type="file"
+            accept="image/*"
+            onChange={this.handleChange}
+          />
         </div>
+        <div className="select-section">
+          <label htmlFor="select">Select Language.</label>
+          <Select
+            id="select"
+            classNamePrefix="select"
+            options={languages}
+            value={selectedLanguage}
+            isSearchable={false}
+            onChange={this.handleChangeSelect}
+            autoFocus={true}
+            // menuIsOpen={true}
+          />
+        </div>
+
         <div className="text-section">
           <div className="image">
             {isLoading ? (
               <div className="loading">
                 <span>Now Converting...</span>
-                <ReactLoading type="bars" color="#000000" />
+                <ReactLoading type="bars" color="#fd8d8e" />
               </div>
             ) : (
               ""
             )}
-            {image ? <img src={image} crossOrigin="anonymous" alt={image} /> : ""}
+            {image ? (
+              <img src={image} crossOrigin="anonymous" alt={image} />
+            ) : (
+              ""
+            )}
           </div>
           <div className="text">
-            <textarea placeholder="" value={text} ref={this.textArea} onChange={this.handleInputText}></textarea>
+            <textarea
+              value={text}
+              ref={this.textArea}
+              onChange={this.handleInputText}
+              placeholder="Converted text..."
+            ></textarea>
           </div>
         </div>
 
         <div className="btns">
-          <button type="button" ref={this.textCopyBtn}>
+          <button type="button" ref={this.textCopyBtn} className="ko">
             복사하기
           </button>
-          <button type="button" onClick={this.handleReadAgain}>
+          <button type="button" onClick={this.handleReadAgain} className="ko">
             재인식
           </button>
           <button type="button" onClick={this.handleReset}>
@@ -175,16 +199,17 @@ export default class App extends Component {
           </button>
         </div>
         <div className="use-way">
-          <h2>directions for use</h2>
-          <span class="ko">
-            ( 권장되는 방법 )<br /> <b>앨범 속 보정된 사진을 사용하는 것</b>이 사진을 바로 찍어서 사용하는 것보다 글자
-            인식률이 높습니다.
+          <h2>Directions for use</h2>
+          <span className="ko">
+            ( 권장되는 방법 )<br /> <b>앨범 속 보정된 사진을 사용하는 것</b>이
+            사진을 바로 찍어서 사용하는 것보다 글자 인식률이 높습니다.
           </span>
-          <span class="en">
-            ( Recommended )<br /> <b>Using calibrated pictures in an album</b> is more recognizable than taking and
-            using them.
+          <span className="en">
+            ( Recommended )<br /> <b>Using calibrated pictures in an album</b>{" "}
+            is more recognizable than taking and using them.
           </span>
         </div>
+        <p className="copyright">made by pumpkinzomb.</p>
       </div>
     );
   }
