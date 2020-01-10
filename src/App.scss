@@ -114,7 +114,7 @@ $mainColor1: #fd8d8e;
 
     .image {
       position: relative;
-
+      border-bottom: 2px solid $mainColor1;
       .loading {
         position: absolute;
         color: $mainColor1;
@@ -147,7 +147,7 @@ $mainColor1: #fd8d8e;
         background: #ffffff;
         border: none;
         overflow-y: auto;
-
+        border-radius: 0;
         &:focus {
           outline: none !important;
 
