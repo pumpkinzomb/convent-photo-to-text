@@ -114,7 +114,7 @@ $mainColor1: #fd8d8e;
 
     .image {
       position: relative;
-      border-bottom: 2px solid $mainColor1;
+
       .loading {
         position: absolute;
         color: $mainColor1;
@@ -133,6 +133,7 @@ $mainColor1: #fd8d8e;
 
       img {
         width: 100%;
+        border-bottom: 2px solid $mainColor1;
       }
     }
 
@@ -169,7 +170,7 @@ $mainColor1: #fd8d8e;
       border-radius: 0.5rem;
       color: $mainColor1;
       font-weight: bold;
-
+      cursor: pointer;
       & + button {
         margin-left: 0.5rem;
       }

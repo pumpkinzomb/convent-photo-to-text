@@ -140,12 +140,7 @@ export default class App extends Component {
           <label htmlFor="pickPhoto">
             <i className="material-icons">photo_camera</i>
           </label>
-          <input
-            id="pickPhoto"
-            type="file"
-            accept="image/*"
-            onChange={this.handleChange}
-          />
+          <input id="pickPhoto" type="file" accept="image/*" onChange={this.handleChange} />
         </div>
         <div className="select-section">
           <label htmlFor="select">Select Language.</label>
@@ -171,11 +166,7 @@ export default class App extends Component {
             ) : (
               ""
             )}
-            {image ? (
-              <img src={image} crossOrigin="anonymous" alt={image} />
-            ) : (
-              ""
-            )}
+            {image ? <img src={image} crossOrigin="anonymous" alt={image} /> : ""}
           </div>
           <div className="text">
             <textarea
@@ -195,18 +186,18 @@ export default class App extends Component {
             재인식
           </button>
           <button type="button" onClick={this.handleReset}>
-            Reset
+            Clear
           </button>
         </div>
         <div className="use-way">
           <h2>Directions for use</h2>
           <span className="ko">
-            ( 권장되는 방법 )<br /> <b>앨범 속 보정된 사진을 사용하는 것</b>이
-            사진을 바로 찍어서 사용하는 것보다 글자 인식률이 높습니다.
+            ( 권장되는 방법 )<br /> <b>앨범 속 보정된 사진을 사용하는 것</b>이 사진을 바로 찍어서 사용하는 것보다 글자
+            인식률이 높습니다.
           </span>
           <span className="en">
-            ( Recommended )<br /> <b>Using calibrated pictures in an album</b>{" "}
-            is more recognizable than taking and using them.
+            ( Recommended )<br /> <b>Using calibrated pictures in an album</b> is more recognizable than taking and
+            using them.
           </span>
         </div>
         <p className="copyright">made by pumpkinzomb.</p>
