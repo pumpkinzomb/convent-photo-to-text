@@ -39,21 +39,6 @@ export default class App extends Component {
   };
   handleChange = e => {
     const image = e.target.files[0];
-    // const test = loadImage(
-    //   image,
-    //   img => {
-    //     document.body.appendChild(img);
-    //   },
-    //   {
-    //     maxWidth: 600,
-    //     orientation: true
-    //   }
-    // );
-    // console.log(test.src);
-    // this.readImage(test, "eng");
-    // console.log(testSrc);
-    // const imgUrl = URL.createObjectURL(test);
-
     if (image) {
       const imgUrl = URL.createObjectURL(image);
       const updateState = update(this.state, {
@@ -86,7 +71,6 @@ export default class App extends Component {
     }
   };
   handleReadAgain = () => {
-    console.log("read");
     if (!this.state.image) {
       return;
     }
@@ -102,7 +86,10 @@ export default class App extends Component {
   handleReset = () => {
     const updateState = update(this.state, {
       text: { $set: "" },
-      image: { $set: "" }
+      image: { $set: "" },
+      isLoading: {
+        $set: false
+      }
     });
     this.setState(updateState);
   };
@@ -140,7 +127,12 @@ export default class App extends Component {
           <label htmlFor="pickPhoto">
             <i className="material-icons">photo_camera</i>
           </label>
-          <input id="pickPhoto" type="file" accept="image/*" onChange={this.handleChange} />
+          <input
+            id="pickPhoto"
+            type="file"
+            accept="image/*"
+            onChange={this.handleChange}
+          />
         </div>
         <div className="select-section">
           <label htmlFor="select">Select Language.</label>
@@ -166,7 +158,11 @@ export default class App extends Component {
             ) : (
               ""
             )}
-            {image ? <img src={image} crossOrigin="anonymous" alt={image} /> : ""}
+            {image ? (
+              <img src={image} crossOrigin="anonymous" alt={image} />
+            ) : (
+              ""
+            )}
           </div>
           <div className="text">
             <textarea
@@ -192,12 +188,12 @@ export default class App extends Component {
         <div className="use-way">
           <h2>Directions for use</h2>
           <span className="ko">
-            ( 권장되는 방법 )<br /> <b>앨범 속 보정된 사진을 사용하는 것</b>이 사진을 바로 찍어서 사용하는 것보다 글자
-            인식률이 높습니다.
+            ( 권장되는 방법 )<br /> <b>앨범 속 보정된 사진을 사용하는 것</b>이
+            사진을 바로 찍어서 사용하는 것보다 글자 인식률이 높습니다.
           </span>
           <span className="en">
-            ( Recommended )<br /> <b>Using calibrated pictures in an album</b> is more recognizable than taking and
-            using them.
+            ( Recommended )<br /> <b>Using calibrated pictures in an album</b>{" "}
+            is more recognizable than taking and using them.
           </span>
         </div>
         <p className="copyright">made by pumpkinzomb.</p>
