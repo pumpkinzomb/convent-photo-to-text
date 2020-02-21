@@ -1,4 +1,6 @@
 body {
   background: linear-gradient(#fff3ee, #fdd0d8);
   padding: 3.5rem 1rem;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
