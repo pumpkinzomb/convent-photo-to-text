@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "blueimp-load-image": "^2.26.0",
     "clipboard": "^2.0.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "node-sass": "^4.13.0",
     "nodemon": "^2.0.2",
     "path": "^0.12.7",
